@@ -54,7 +54,8 @@ function handleResponse(response) {
         welcomeUser(username);
         updateTable(response.account);
     } else {
-        selectAccount();
+        //selectAccount();
+        handleSilentLogin();
 
         /**
          * If you already have a session that exists with the authentication server, you can use the ssoSilent() API
@@ -74,6 +75,37 @@ function handleResponse(response) {
         //     });
     }
 }
+
+function handleSilentLogin() {
+    const currentAccounts = myMSALObj.getAllAccounts();
+    if (currentAccounts.length > 0) {
+        myMSALObj.acquireTokenSilent({
+            scopes: ["openid", "profile"],
+            account: currentAccounts[0]
+        }).then((response) => {
+            console.log("Token obtained silently:", response);
+            updateTable(response.idTokenClaims);
+        }).catch((error) => {
+            console.warn("Silent login failed:", error);
+            // Fall back to interactive login if silent login fails
+            signIn();//Interactively();
+        });
+    }
+}
+/*
+function signInInteractively() {
+    const loginRequest = {
+        scopes: ["openid", "profile"] // Add the scopes you need
+    };
+
+    myMSALObj.loginRedirect(loginRequest).then(() => {
+        // After a successful redirect login
+        console.log("Login successful, processing the redirect.");
+    }).catch((error) => {
+        console.error("Interactive login failed", error);
+    });
+}
+*/
 
 function signIn() {
 

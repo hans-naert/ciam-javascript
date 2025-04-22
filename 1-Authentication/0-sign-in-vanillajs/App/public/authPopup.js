@@ -53,16 +53,16 @@ function handleResponse(response) {
          * line above and uncomment the section below.
          */
 
-        // myMSALObj.ssoSilent(silentRequest).
-        //     then((response) => {
-        //          welcomeUser(response.account.username);
-        //          updateTable(response.account);
-        //     }).catch(error => {
-        //         console.error("Silent Error: " + error);
-        //         if (error instanceof msal.InteractionRequiredAuthError) {
-        //             signIn();
-        //         }
-        //     });
+         myMSALObj.ssoSilent(silentRequest).
+             then((response) => {
+                  welcomeUser(response.account.username);
+                  updateTable(response.account);
+             }).catch(error => {
+                 console.error("Silent Error: " + error);
+                 if (error instanceof msal.InteractionRequiredAuthError) {
+                     signIn();
+                 }
+             });
     }
 }
 

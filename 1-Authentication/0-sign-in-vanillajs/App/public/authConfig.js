@@ -5,14 +5,14 @@
  */
 const msalConfig = {
     auth: {
-        clientId: 'Enter_the_Application_Id_Here', // This is the ONLY mandatory field that you need to supply.
-        authority: 'https://Enter_the_Tenant_Subdomain_Here.ciamlogin.com/', // Replace the placeholder with your tenant subdomain        
-        redirectUri: 'http://localhost:3000/redirect', // You must register this URI on Microsoft Entra admin center/App Registration. Defaults to window.location.href e.g. http://localhost:3000/
+        clientId: '97059c27-b7d8-4573-9f49-e060ebd5228a', // This is the ONLY mandatory field that you need to supply.
+        authority: 'https://exthn2025.ciamlogin.com/', // Replace the placeholder with your tenant subdomain        
+        redirectUri: '/', // You must register this URI on Microsoft Entra admin center/App Registration. Defaults to window.location.href e.g. http://localhost:3000/
         navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {
         cacheLocation: 'sessionStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO.
-        storeAuthStateInCookie: false, // set this to true if you have to support IE
+        storeAuthStateInCookie: true, // set this to true if you have to support IE
     },
     system: {
         loggerOptions: {

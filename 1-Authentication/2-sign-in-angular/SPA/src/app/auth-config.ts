@@ -18,13 +18,15 @@ import {
  */
 export const msalConfig: Configuration = {
   auth: {
-    clientId: 'Enter_the_Application_Id_Here', // This is the ONLY mandatory field that you need to supply.
-    authority: 'https://Enter_the_Tenant_Subdomain_Here.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
+    clientId: '97059c27-b7d8-4573-9f49-e060ebd5228a', // This is the ONLY mandatory field that you need to supply.
+    authority: 'https://exthn2025.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
     redirectUri: '/', // Points to window.location.origin by default. You must register this URI on Microsoft Entra admin center/App Registration.
     postLogoutRedirectUri: '/', // Points to window.location.origin by default.
   },
   cache: {
     cacheLocation: BrowserCacheLocation.LocalStorage, // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+    storeAuthStateInCookie: true, // Set to true for IE 11 and Edge
+    claimsBasedCachingEnabled: true
   },
   system: {
     loggerOptions: {
