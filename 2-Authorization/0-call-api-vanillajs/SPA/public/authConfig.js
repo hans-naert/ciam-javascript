@@ -5,10 +5,10 @@
  */
 const msalConfig = {
     auth: {
-        clientId: 'Enter_the_Application_Id_Here', // This is the ONLY mandatory field that you need to supply.
+        clientId: '3e68d9d1-19e2-4db8-a377-4f79d62e0e54', // This is the ONLY mandatory field that you need to supply.
         redirectUri: '/', // You must register this URI on Microsoft Entra admin center/App Registration. Defaults to window.location.href e.g. http://localhost:3000/,
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
-        authority: 'https://Enter_the_Tenant_Subdomain_Here.ciamlogin.com/' // Replace the placeholder with your tenant subdomain
+        authority: 'https://exthn2025.ciamlogin.com/' // Replace the placeholder with your tenant subdomain
     },
     cache: {
         cacheLocation: 'sessionStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO.
@@ -49,8 +49,8 @@ const protectedResources = {
     toDoListAPI: {
         endpoint: 'https://localhost:44351/api/todolist',
         scopes: {
-            read: ['api://Enter_the_Web_Api_Application_Id_Here/ToDolist.Read'],
-            write: ['api://Enter_the_Web_Api_Application_Id_Here/ToDolist.ReadWrite'],
+            read: ['api://606234e3-a749-4618-8831-224aec13cff4/ToDolist.Read'],
+            write: ['api://606234e3-a749-4618-8831-224aec13cff4/ToDolist.ReadWrite'],
         },
     },
 };
