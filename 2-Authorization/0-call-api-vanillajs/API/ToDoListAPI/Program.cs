@@ -5,7 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
-
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging; 
+using Microsoft.OpenApi.Models; 
+using System.Collections.Generic;  
+using System;
 using ToDoListAPI.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +64,46 @@ builder.Services.AddCors(o => o.AddPolicy("default", builder =>
            .AllowAnyHeader();
 }));
 
+builder.Services.AddEndpointsApiExplorer();
+// Add Swagger and Swagger UI
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.OAuth2,
+        Flows = new OpenApiOAuthFlows
+        {
+            Implicit = new OpenApiOAuthFlow
+            {
+                AuthorizationUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize?prompt=login"),
+                Scopes = new Dictionary<string, string>
+                {
+                    { "api://606234e3-a749-4618-8831-224aec13cff4/ToDoList.Read", "Read to-do items" },
+                    { "api://606234e3-a749-4618-8831-224aec13cff4/ToDoList.ReadWrite", "Write to-do items" }
+                }
+            }
+        }
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "oauth2"
+                }
+            },
+            new string[] { "api://606234e3-a749-4618-8831-224aec13cff4/ToDoList.Read", "api://606234e3-a749-4618-8831-224aec13cff4/ToDoList.ReadWrite" }
+        }
+    });
+});
+
+// Register other services
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -69,6 +113,16 @@ if (app.Environment.IsDevelopment())
     // For debugging/development purposes, one can enable additional detail in exceptions by setting IdentityModelEventSource.ShowPII to true.
     // Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
     app.UseDeveloperExceptionPage();
+    app.UseSwagger(); 
+  app.UseSwaggerUI();
+  app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
+  {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+     options.OAuthClientId("3e68d9d1-19e2-4db8-a377-4f79d62e0e54"); // Important! Use SPA client ID
+    options.OAuthUsePkce(); // Important! Use PKCE instead of implicit flow
+    options.RoutePrefix = string.Empty;
+  });
+
 }
 else
 {
