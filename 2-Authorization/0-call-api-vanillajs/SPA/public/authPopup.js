@@ -42,7 +42,25 @@ function handleResponse(response) {
         welcomeUser(username);
         updateTable(response.account);
     } else {
-        selectAccount();
+        //selectAccount();
+        handleSilentLogin();
+    }
+}
+
+function handleSilentLogin() {
+    const currentAccounts = myMSALObj.getAllAccounts();
+    if (currentAccounts.length > 0) {
+        myMSALObj.acquireTokenSilent({
+            scopes: ["openid", "profile"],
+            account: currentAccounts[0]
+        }).then((response) => {
+            console.log("Token obtained silently:", response);
+            updateTable(response.idTokenClaims);
+        }).catch((error) => {
+            console.warn("Silent login failed:", error);
+            // Fall back to interactive login if silent login fails
+            signIn();//Interactively();
+        });
     }
 }
 
@@ -73,7 +91,8 @@ function getTokenPopup(request) {
     return myMSALObj.acquireTokenSilent(request).catch((error) => {
         console.warn(error);
         console.warn('silent token acquisition fails. acquiring token using popup');
-        if (error instanceof msal.InteractionRequiredAuthError) {
+        if (/*error instanceof msal.InteractionRequiredAuthError*/ true) {
+            console.error('Interaction required error occurred. Attempting to acquire token using popup.');
             // fallback to interaction when silent call fails
             return myMSALObj
                 .acquireTokenPopup(request)
@@ -82,9 +101,11 @@ function getTokenPopup(request) {
                 })
                 .catch((error) => {
                     console.error(error);
+                    console.warn('Token acquisition with popup failed. Please try again.');
                 });
         } else {
             console.warn(error);
+            console.error('other error occurred. Please try again.');
         }
     });
 }
