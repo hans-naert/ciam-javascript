@@ -5,8 +5,8 @@
  */
 const msalConfig = {
     auth: {
-        clientId: 'Enter_the_Application_Id_Here', // This is the ONLY mandatory field that you need to supply.
-        authority: 'https://Enter_the_Tenant_Subdomain_Here.ciamlogin.com/', // Replace the placeholder with your tenant subdomain        
+        clientId: '3e68d9d1-19e2-4db8-a377-4f79d62e0e54', // This is the ONLY mandatory field that you need to supply.
+        authority: 'https://exthn2025.ciamlogin.com/', // Replace the placeholder with your tenant subdomain        
         redirectUri: 'http://localhost:3000/redirect', // You must register this URI on Microsoft Entra admin center/App Registration. Defaults to window.location.href e.g. http://localhost:3000/
         navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
     },

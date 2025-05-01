@@ -36,12 +36,12 @@ function selectAccount() {
         // Add your account choosing logic here
         console.warn("Multiple accounts detected.");
     } else if (currentAccounts.length === 1) {
-        username = currentAccounts[0].username
-        welcomeUser(currentAccounts[0].username);
-        updateTable(currentAccounts[0]);
+        myMSALObj.acquireTokenSilent({account:currentAccounts[0]}).then(handleResponse).catch((error) => {
+            console.error("Silent token acquisition failed. Error: ", error);        
+        })
     }
 }
-
+    
 function handleResponse(response) {
 
     /**
@@ -50,9 +50,9 @@ function handleResponse(response) {
      */
 
     if (response !== null) {
-        username = response.account.username
+        username = response?.account?.username || response?.account?.email || response?.account?.name || "Unknown";
         welcomeUser(username);
-        updateTable(response.account);
+        updateTable(response.account); 
     } else {
         selectAccount();
 
