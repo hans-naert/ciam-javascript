@@ -1,0 +1,171 @@
+{
+	"id": "04937d4e-75bc-4847-91d1-b6488b4e76e9",
+	"deletedDateTime": null,
+	"appId": "3e68d9d1-19e2-4db8-a377-4f79d62e0e54",
+	"applicationTemplateId": null,
+	"disabledByMicrosoftStatus": null,
+	"createdDateTime": "2025-04-20T17:56:11Z",
+	"displayName": "ciam-msal-javascript-spa",
+	"description": null,
+	"groupMembershipClaims": "None",
+	"identifierUris": [],
+	"isDeviceOnlyAuthSupported": null,
+	"isFallbackPublicClient": null,
+	"nativeAuthenticationApisEnabled": null,
+	"notes": null,
+	"publisherDomain": "exthn2025.onmicrosoft.com",
+	"serviceManagementReference": null,
+	"signInAudience": "AzureADandPersonalMicrosoftAccount",
+	"tags": [],
+	"tokenEncryptionKeyId": null,
+	"samlMetadataUrl": null,
+	"defaultRedirectUri": null,
+	"certification": null,
+	"servicePrincipalLockConfiguration": null,
+	"requestSignatureVerification": null,
+	"addIns": [],
+	"api": {
+		"acceptMappedClaims": null,
+		"knownClientApplications": [],
+		"requestedAccessTokenVersion": 2,
+		"oauth2PermissionScopes": [],
+		"preAuthorizedApplications": []
+	},
+	"appRoles": [],
+	"info": {
+		"logoUrl": null,
+		"marketingUrl": null,
+		"privacyStatementUrl": null,
+		"supportUrl": null,
+		"termsOfServiceUrl": null
+	},
+	"keyCredentials": [],
+	"optionalClaims": {
+		"accessToken": [],
+		"idToken": [
+			{
+				"additionalProperties": [],
+				"essential": false,
+				"name": "email",
+				"source": null
+			},
+			{
+				"additionalProperties": [],
+				"essential": false,
+				"name": "acct",
+				"source": null
+			},
+			{
+				"additionalProperties": [],
+				"essential": false,
+				"name": "login_hint",
+				"source": null
+			}
+		],
+		"saml2Token": []
+	},
+	"parentalControlSettings": {
+		"countriesBlockedForMinors": [],
+		"legalAgeGroupRule": "Allow"
+	},
+	"passwordCredentials": [
+		{
+			"customKeyIdentifier": null,
+			"displayName": "secret",
+			"endDateTime": "2025-10-25T11:08:10.905Z",
+			"hint": "v1P",
+			"keyId": "3c05fd35-a1b8-42a3-9deb-060e7ed0b52c",
+			"secretText": null,
+			"startDateTime": "2025-04-28T11:08:10.905Z"
+		}
+	],
+	"publicClient": {
+		"redirectUris": []
+	},
+	"requiredResourceAccess": [
+		{
+			"resourceAppId": "00000003-0000-0000-c000-000000000000",
+			"resourceAccess": [
+				{
+					"id": "64a6cdd6-aab1-4aaf-94b8-3cc8405e90d0",
+					"type": "Scope"
+				},
+				{
+					"id": "7427e0e9-2fba-42fe-b0c0-848c9e6a8182",
+					"type": "Scope"
+				},
+				{
+					"id": "37f7f235-527c-4136-accd-4a02d197296e",
+					"type": "Scope"
+				},
+				{
+					"id": "14dad69e-099b-42c9-810b-d002981feec1",
+					"type": "Scope"
+				},
+				{
+					"id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+					"type": "Scope"
+				}
+			]
+		},
+		{
+			"resourceAppId": "606234e3-a749-4618-8831-224aec13cff4",
+			"resourceAccess": [
+				{
+					"id": "ca4c380c-44f4-4bcd-b117-2366dbdcee88",
+					"type": "Scope"
+				},
+				{
+					"id": "9649d5da-a64d-4760-80db-0271929597b5",
+					"type": "Scope"
+				},
+				{
+					"id": "a5f4d412-c9ab-4ff7-b998-9f5fdae0ac4d",
+					"type": "Role"
+				},
+				{
+					"id": "e6734531-4d90-4340-a500-ecd94099d6e0",
+					"type": "Role"
+				}
+			]
+		}
+	],
+	"verifiedPublisher": {
+		"displayName": null,
+		"verifiedPublisherId": null,
+		"addedDateTime": null
+	},
+	"web": {
+		"homePageUrl": null,
+		"logoutUrl": null,
+		"redirectUris": [
+			"https://localhost:44351/oauth2-redirect.html",
+			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
+			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize"
+		],
+		"implicitGrantSettings": {
+			"enableAccessTokenIssuance": true,
+			"enableIdTokenIssuance": true
+		},
+		"redirectUriSettings": [
+			{
+				"uri": "https://localhost:44351/oauth2-redirect.html",
+				"index": null
+			},
+			{
+				"uri": "https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
+				"index": null
+			},
+			{
+				"uri": "https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize",
+				"index": null
+			}
+		]
+	},
+	"spa": {
+		"redirectUris": [
+			"http://localhost:3000/redirect",
+			"http://localhost:3000"
+		]
+	}
+}

@@ -53,6 +53,40 @@ function handleResponse(response) {
         username = response?.account?.username || response?.account?.email || response?.account?.name || "Unknown";
         welcomeUser(username);
         updateTable(response.account); 
+
+    const accessTokenRequest = {
+        account: response.account,
+        scopes: ["User.Read"], // Add the scopes you need for your API"]
+    };
+
+    myMSALObj.acquireTokenSilent(accessTokenRequest)
+        .then((response) => {
+            console.log("Access Token:", response.accessToken);
+            // Use the access token to call your API
+
+            fetch("https://graph.microsoft.com/v1.0/me", {
+                method: "GET",
+                headers: {
+                  "Authorization": `Bearer ${response.accessToken}`, // Use the access token you got
+                  "Content-Type": "application/json"
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log("Graph API response:", data);
+                alert("Your email address is: " + (data.mail || data.userPrincipalName));
+              })
+              .catch(error => {
+                console.error("Error calling Microsoft Graph:", error);
+              });
+
+
+        })
+        .catch((error) => {
+            console.error("Silent token acquisition failed:", error);
+            // Possibly fallback to loginRedirect() or loginPopup()
+        });
+
     } else {
         selectAccount();
 
