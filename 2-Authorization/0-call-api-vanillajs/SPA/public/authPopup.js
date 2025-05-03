@@ -13,6 +13,8 @@ msal.PublicClientApplication.createPublicClientApplication(msalConfig)
 
 let username = '';
 
+let selectedAccount = null;
+
 function selectAccount() {
     /**
      * See here for more info on account retrieval:
@@ -26,6 +28,7 @@ function selectAccount() {
         // Add your account choosing logic here
         console.warn('Multiple accounts detected.');
     } else if (currentAccounts.length === 1) {
+        selectedAccount = currentAccounts[0];
         myMSALObj.acquireTokenSilent({account:currentAccounts[0]}).then(handleResponse).catch((error) => {
             console.error("Silent token acquisition failed. Error: ", error);        
         })
@@ -44,7 +47,7 @@ function handleResponse(response) {
         updateTable(response.account);
 
         const accessTokenRequest = {
-            account: response.account,
+            account: selectedAccount,
             scopes: ["User.Read"], // Add the scopes you need for your API"]
         };
     
@@ -105,7 +108,7 @@ function getTokenPopup(request) {
      * See here for more information on account retrieval:
      * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-common/docs/Accounts.md
      */
-    request.account = myMSALObj.getAccountByUsername(username);
+    request.account = selectedAccount;
     return myMSALObj.acquireTokenSilent(request).catch((error) => {
         console.warn(error);
         console.warn('silent token acquisition fails. acquiring token using popup');
