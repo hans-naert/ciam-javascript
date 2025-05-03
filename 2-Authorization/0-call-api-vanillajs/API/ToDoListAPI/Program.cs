@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
 
 using ToDoListAPI.Context;
 
@@ -42,6 +45,45 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 //    }
                 //};
             }, options => { builder.Configuration.Bind("AzureAd", options); });
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.OAuth2,
+        Flows = new OpenApiOAuthFlows
+        {
+            AuthorizationCode = new OpenApiOAuthFlow
+            {
+                AuthorizationUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize"),
+                TokenUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/token"),
+                Scopes = new Dictionary<string, string>
+                {
+                    { "api://606234e3-a749-4618-8831-224aec13cff4/ToDolist.ReadWrite", "Read and write access" },
+                    { "openid", "Sign in" },
+                    { "profile", "User profile" }
+                }
+            }
+        }
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "oauth2"
+                }
+            },
+            new[] { "api://606234e3-a749-4618-8831-224aec13cff4/ToDolist.ReadWrite", "openid", "profile" }
+        }
+    });
+});
 
 
 builder.Services.AddDbContext<ToDoContext>(options =>
@@ -84,5 +126,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    c.OAuthClientId("3e68d9d1-19e2-4db8-a377-4f79d62e0e54");
+    c.OAuthUsePkce(); // Enables PKCE
+    c.OAuthAppName("My Swagger UI with CIAM");
+    c.OAuthScopeSeparator(" ");
+});
 
 app.Run();

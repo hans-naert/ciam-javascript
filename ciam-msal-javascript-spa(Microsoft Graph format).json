@@ -139,19 +139,14 @@
 		"homePageUrl": null,
 		"logoutUrl": null,
 		"redirectUris": [
-			"https://localhost:44351/oauth2-redirect.html",
 			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
 			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize"
 		],
 		"implicitGrantSettings": {
-			"enableAccessTokenIssuance": true,
-			"enableIdTokenIssuance": true
+			"enableAccessTokenIssuance": false,
+			"enableIdTokenIssuance": false
 		},
 		"redirectUriSettings": [
-			{
-				"uri": "https://localhost:44351/oauth2-redirect.html",
-				"index": null
-			},
 			{
 				"uri": "https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
 				"index": null
@@ -164,6 +159,7 @@
 	},
 	"spa": {
 		"redirectUris": [
+			"https://localhost:44351/swagger/oauth2-redirect.html",
 			"http://localhost:3000/redirect",
 			"http://localhost:3000"
 		]
