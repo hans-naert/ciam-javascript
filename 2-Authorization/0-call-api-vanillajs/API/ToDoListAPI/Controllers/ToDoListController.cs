@@ -24,8 +24,20 @@ public class ToDoListController : ControllerBase
         _toDoContext = toDoContext;
     }
 
+    [Authorize]
+    [HttpGet("is-admin")]
+    public IActionResult IsAdmin()
+    {
+        var user = HttpContext.User;
+
+        // Check if "Admin" is in the "roles" claim
+        bool isAdmin = user.IsInRole("Admin");
+
+        return Ok(isAdmin);
+    }
+
     /// <summary>
-    /// The 'oid' (object id) is the only claim that should be used to uniquely identify
+    /// The 'oid' (object id) is the only claim that sld be used to uniquely identify
     /// a user in an external tenant. The token might have one or more of the following claim,
     /// that might seem like a unique identifier, but is not and should not be used as such:
     ///

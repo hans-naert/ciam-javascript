@@ -84,6 +84,19 @@
 	},
 	"requiredResourceAccess": [
 		{
+			"resourceAppId": "606234e3-a749-4618-8831-224aec13cff4",
+			"resourceAccess": [
+				{
+					"id": "ca4c380c-44f4-4bcd-b117-2366dbdcee88",
+					"type": "Scope"
+				},
+				{
+					"id": "9649d5da-a64d-4760-80db-0271929597b5",
+					"type": "Scope"
+				}
+			]
+		},
+		{
 			"resourceAppId": "00000003-0000-0000-c000-000000000000",
 			"resourceAccess": [
 				{
@@ -107,27 +120,6 @@
 					"type": "Scope"
 				}
 			]
-		},
-		{
-			"resourceAppId": "606234e3-a749-4618-8831-224aec13cff4",
-			"resourceAccess": [
-				{
-					"id": "ca4c380c-44f4-4bcd-b117-2366dbdcee88",
-					"type": "Scope"
-				},
-				{
-					"id": "9649d5da-a64d-4760-80db-0271929597b5",
-					"type": "Scope"
-				},
-				{
-					"id": "a5f4d412-c9ab-4ff7-b998-9f5fdae0ac4d",
-					"type": "Role"
-				},
-				{
-					"id": "e6734531-4d90-4340-a500-ecd94099d6e0",
-					"type": "Role"
-				}
-			]
 		}
 	],
 	"verifiedPublisher": {
@@ -139,14 +131,19 @@
 		"homePageUrl": null,
 		"logoutUrl": null,
 		"redirectUris": [
+			"https://exthn2025.ciamlogin.com/exthn2025.onmicrosoft.com/federation/oauth2",
 			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
 			"https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize"
 		],
 		"implicitGrantSettings": {
-			"enableAccessTokenIssuance": false,
-			"enableIdTokenIssuance": false
+			"enableAccessTokenIssuance": true,
+			"enableIdTokenIssuance": true
 		},
 		"redirectUriSettings": [
+			{
+				"uri": "https://exthn2025.ciamlogin.com/exthn2025.onmicrosoft.com/federation/oauth2",
+				"index": null
+			},
 			{
 				"uri": "https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/federation/oauth2",
 				"index": null
@@ -159,6 +156,8 @@
 	},
 	"spa": {
 		"redirectUris": [
+			"https://jwt.ms",
+			"https://webapi-hn-2025-fwenbzajagcufzbm.westeurope-01.azurewebsites.net/swagger/oauth2-redirect.html",
 			"https://localhost:44351/swagger/oauth2-redirect.html",
 			"http://localhost:3000/redirect",
 			"http://localhost:3000"

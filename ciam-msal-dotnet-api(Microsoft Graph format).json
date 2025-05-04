@@ -57,6 +57,17 @@
 	"appRoles": [
 		{
 			"allowedMemberTypes": [
+				"User"
+			],
+			"description": "Administrator rights",
+			"displayName": "Admin",
+			"id": "a45b6f6b-7920-4ba4-9b30-d46de7641a17",
+			"isEnabled": true,
+			"origin": "Application",
+			"value": "Admin"
+		},
+		{
+			"allowedMemberTypes": [
 				"Application"
 			],
 			"description": "Allows the app to read/write the signed-in user's files..",

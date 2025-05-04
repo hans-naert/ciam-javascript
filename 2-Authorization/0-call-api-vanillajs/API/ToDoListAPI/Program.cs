@@ -57,8 +57,8 @@ builder.Services.AddSwaggerGen(c =>
         {
             AuthorizationCode = new OpenApiOAuthFlow
             {
-                AuthorizationUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize"),
-                TokenUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/token"),
+                AuthorizationUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/authorize?p=userflow-quickstart-angular"),
+                TokenUrl = new Uri("https://exthn2025.ciamlogin.com/2744ce4b-6c74-4383-9e49-d4efddb5fb18/oauth2/v2.0/token?p=userflow-quickstart-angular"),
                 Scopes = new Dictionary<string, string>
                 {
                     { "api://606234e3-a749-4618-8831-224aec13cff4/ToDolist.ReadWrite", "Read and write access" },

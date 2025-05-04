@@ -8,7 +8,8 @@ const msalConfig = {
         clientId: '3e68d9d1-19e2-4db8-a377-4f79d62e0e54', // This is the ONLY mandatory field that you need to supply.
         redirectUri: '/', // You must register this URI on Microsoft Entra admin center/App Registration. Defaults to window.location.href e.g. http://localhost:3000/,
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
-        authority: 'https://exthn2025.ciamlogin.com/', // Replace the placeholder with your tenant subdomain       
+        userFlow: 'userflow-quickstart-angular', // The name of the user flow to use for authentication. This is the name of the user flow you created in the Azure portal.
+        authority: 'https://exthn2025.ciamlogin.com', // Replace the placeholder with your tenant subdomain       
     },
     cache: {
         cacheLocation: 'sessionStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO.
